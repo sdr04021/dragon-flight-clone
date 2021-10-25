@@ -12,7 +12,6 @@ public class Test : MonoBehaviour
         // 테스트 김양선2
         // 안녕하세요
         // 테스트 손석규
-
         // 테스트 김양선 브랜치
     }
 
