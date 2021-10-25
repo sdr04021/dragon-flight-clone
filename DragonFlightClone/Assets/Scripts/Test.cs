@@ -8,7 +8,9 @@ public class Test : MonoBehaviour
     void Start()
     {
         // 테스트 이승엽
-        // 테스트 김양선 
+        // 테스트 김양선
+        // 안녕하세요
+        // 테스트 손석규
     }
 
     // Update is called once per frame
