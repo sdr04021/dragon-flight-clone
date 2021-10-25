@@ -8,6 +8,7 @@ public class Test : MonoBehaviour
     void Start()
     {
         // 테스트 이승엽
+        // test LeeSeungYeop2
         // 테스트 김양선
         // 테스트 김양선2
         // 안녕하세요
