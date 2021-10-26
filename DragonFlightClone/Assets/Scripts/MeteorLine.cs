@@ -22,7 +22,7 @@ public class MeteorLine : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //playerRigid2d = GameObject.Find("player").GetComponent<Rigidbody2D>();
+        playerRigid2d = GameObject.Find("player").GetComponent<Rigidbody2D>();
         meteorAlert = GetComponentInChildren<Image>();
         alertPos = meteorAlert.transform.position;
         StartCoroutine(moveCount());
@@ -32,7 +32,7 @@ public class MeteorLine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //FollowPlayer();
+        FollowPlayer();
 
         if (tremble)
         {
@@ -42,7 +42,7 @@ public class MeteorLine : MonoBehaviour
 
     void FollowPlayer()
     {
-        /*
+        
         if (trace)
         {
             float player_x = playerRigid2d.position.x;
@@ -56,7 +56,7 @@ public class MeteorLine : MonoBehaviour
                 transform.Translate(-speed * Time.deltaTime, 0, 0);
             }
         }
-        */
+        
     }
 
     //추적 & 추적 시간 종료 후 운석 생성
