@@ -102,7 +102,7 @@ MonoBehaviour:
   hp: 3
   speed: 3
   hpbar: {fileID: 6942728372854333275}
-  bullet: {fileID: 4996412372470302010, guid: dc9787b3b5ea53544a991eb7beea226d, type: 3}
+  coinPrefab: {fileID: 4690968367469408519, guid: f1bdf52d0ab908b459cd64688244cc39, type: 3}
 --- !u!50 &6942728372659393457
 Rigidbody2D:
   serializedVersion: 4

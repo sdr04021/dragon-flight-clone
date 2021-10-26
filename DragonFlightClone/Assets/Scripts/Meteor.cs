@@ -6,7 +6,7 @@ public class Meteor : MonoBehaviour
 {
     Rigidbody2D rigid2D;
 
-    public float fallSpeed = 6.0f;
+    float fallSpeed = 6.0f;
     float angle = 0;
 
     // Start is called before the first frame update
