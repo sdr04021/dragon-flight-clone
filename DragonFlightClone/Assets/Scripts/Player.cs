@@ -6,15 +6,13 @@ using TMPro;
 public class Player : MonoBehaviour
 {
     public GameObject bullet; // 총알
-    //public GameObject meteor; // 운석
-    public GameObject enemy_small; // 적
-    public GameObject enemy_normal; // 적
-    // public GameObject warn; // 느낌표
+    //public GameObject enemy_small; // 적
+    // public GameObject enemy_normal; // 적
     Rigidbody2D rigid2d;
     public float speed = 0.1f; // 이동속도
     public int playerHP = 3; // 체력
     public int gold = 0; // 돈
-
+    //int enemy_count = 0;
     public GameObject magnetEffectPrefab;
     public bool isMagnet = false;
     bool gotMagnetBefore = false;
@@ -24,7 +22,7 @@ public class Player : MonoBehaviour
     {
         rigid2d = GetComponent<Rigidbody2D>();
         StartCoroutine("spawnBullet"); // 총알 생성
-        StartCoroutine("spawnEnemy"); // 적 생성
+        //StartCoroutine("spawnEnemy"); // 적 생성
         StartCoroutine(MagnetEffect());
     }
 
@@ -37,18 +35,32 @@ public class Player : MonoBehaviour
         }
 
     }
+    /*
     IEnumerator spawnEnemy()
     {
         while (true)
         {
-            Instantiate(enemy_small, new Vector2(-3, 6), Quaternion.identity);
-            Instantiate(enemy_small, new Vector2(-1.5f, 6), Quaternion.identity);
-            Instantiate(enemy_small, new Vector2(0, 6), Quaternion.identity);
-            Instantiate(enemy_small, new Vector2(1.5f, 6), Quaternion.identity);
-            Instantiate(enemy_small, new Vector2(3, 6), Quaternion.identity);
+            if(enemy_count < 3) // 작은 적 생성(10번만)
+            {
+                Instantiate(enemy_small, new Vector2(-3, 6), Quaternion.identity);
+                Instantiate(enemy_small, new Vector2(-1.5f, 6), Quaternion.identity);
+                Instantiate(enemy_small, new Vector2(0, 6), Quaternion.identity);
+                Instantiate(enemy_small, new Vector2(1.5f, 6), Quaternion.identity);
+                Instantiate(enemy_small, new Vector2(3, 6), Quaternion.identity);
+                enemy_count++;
+            }
+            else if(enemy_count >= 3) // 보통 적 생성(작은 적 10번 생성 이후)
+            {
+                Instantiate(enemy_normal, new Vector2(-3, 6), Quaternion.identity);
+                Instantiate(enemy_normal, new Vector2(-1.5f, 6), Quaternion.identity);
+                Instantiate(enemy_normal, new Vector2(0, 6), Quaternion.identity);
+                Instantiate(enemy_normal, new Vector2(1.5f, 6), Quaternion.identity);
+                Instantiate(enemy_normal, new Vector2(3, 6), Quaternion.identity);
+            }
             yield return new WaitForSeconds(5f);
         }
     }
+    */
     IEnumerator Magnet()
     {
         yield return new WaitForSeconds(5.0f); //자석 지속시간

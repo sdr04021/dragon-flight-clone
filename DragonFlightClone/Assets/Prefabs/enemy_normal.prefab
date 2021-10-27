@@ -100,10 +100,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 5
   hp: 5
-  speed: 4
+  speed: 3
   hpbar: {fileID: 6778968808168122222}
   coinPrefab: {fileID: 4690968367469408519, guid: f1bdf52d0ab908b459cd64688244cc39, type: 3}
   MagnetPrefab: {fileID: 820537739339937398, guid: ca2a1ed37bdb1074f8f0af0c09d8474e, type: 3}
+  bullet: {fileID: 4996412372470302010, guid: dc9787b3b5ea53544a991eb7beea226d, type: 3}
 --- !u!50 &6778968806756838276
 Rigidbody2D:
   serializedVersion: 4

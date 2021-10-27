@@ -98,12 +98,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f329df8cafdee0a4cada13fe0d43f3a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 10
-  hp: 10
-  speed: 4
+  maxHP: 100
+  hp: 100
+  speed: 3
   hpbar: {fileID: 7461307043590502441}
   coinPrefab: {fileID: 4690968367469408519, guid: f1bdf52d0ab908b459cd64688244cc39, type: 3}
   MagnetPrefab: {fileID: 820537739339937398, guid: ca2a1ed37bdb1074f8f0af0c09d8474e, type: 3}
+  bullet: {fileID: 0}
 --- !u!50 &7461307041776497859
 Rigidbody2D:
   serializedVersion: 4
@@ -280,7 +281,7 @@ RectTransform:
   m_GameObject: {fileID: 7461307043519274268}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 2, z: 1}
+  m_LocalScale: {x: 3, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 7461307042759033463}
   m_RootOrder: 0
@@ -407,7 +408,7 @@ RectTransform:
   m_GameObject: {fileID: 7461307043590502441}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5.1, y: 2, z: 1}
+  m_LocalScale: {x: 3.8, y: 1.8, z: 1}
   m_Children: []
   m_Father: {fileID: 7461307042759033463}
   m_RootOrder: 1

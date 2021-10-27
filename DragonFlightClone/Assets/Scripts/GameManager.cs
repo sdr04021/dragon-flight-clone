@@ -7,6 +7,9 @@ public class GameManager : MonoBehaviour
     public static GameManager gm;
 
     public GameObject meteorLinePrefab;
+    public GameObject enemy_small; // 利
+    public GameObject enemy_normal; // 利
+    int enemy_count = 0; // 利 殿厘 冉荐
 
     public int gold = 0;
 
@@ -19,6 +22,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         StartCoroutine(meteorGenerator());
+        StartCoroutine("spawnEnemy"); // 利 积己
     }
 
     // Update is called once per frame
@@ -34,6 +38,31 @@ public class GameManager : MonoBehaviour
         {
             yield return new WaitForSeconds(Random.Range(5, 8));
             Instantiate(meteorLinePrefab, new Vector2(GameObject.Find("player").GetComponent<Rigidbody2D>().position.x, 0), Quaternion.identity);
+        }
+    }
+
+    IEnumerator spawnEnemy()
+    {
+        while (true)
+        {
+            if (enemy_count < 3) // 累篮 利 积己(10锅父)
+            {
+                Instantiate(enemy_small, new Vector2(-3, 6), Quaternion.identity);
+                Instantiate(enemy_small, new Vector2(-1.5f, 6), Quaternion.identity);
+                Instantiate(enemy_small, new Vector2(0, 6), Quaternion.identity);
+                Instantiate(enemy_small, new Vector2(1.5f, 6), Quaternion.identity);
+                Instantiate(enemy_small, new Vector2(3, 6), Quaternion.identity);
+                enemy_count++;
+            }
+            else if (enemy_count >= 3) // 焊烹 利 积己(累篮 利 10锅 积己 捞饶)
+            {
+                Instantiate(enemy_normal, new Vector2(-3, 6), Quaternion.identity);
+                Instantiate(enemy_normal, new Vector2(-1.5f, 6), Quaternion.identity);
+                Instantiate(enemy_normal, new Vector2(0, 6), Quaternion.identity);
+                Instantiate(enemy_normal, new Vector2(1.5f, 6), Quaternion.identity);
+                Instantiate(enemy_normal, new Vector2(3, 6), Quaternion.identity);
+            }
+            yield return new WaitForSeconds(5f);
         }
     }
 }

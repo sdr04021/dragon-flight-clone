@@ -27,4 +27,9 @@ public class Bullet : MonoBehaviour
     {
         return damage;
     }
+
+    public void setDamage(float damage)
+    {
+        this.damage = damage;
+    }
 }

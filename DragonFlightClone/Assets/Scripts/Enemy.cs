@@ -11,17 +11,19 @@ public class Enemy : MonoBehaviour
     public GameObject hpbar;
     public GameObject coinPrefab;
     public GameObject MagnetPrefab;
-
+    public GameObject bullet;
+    float bulletDamage;
     Rigidbody2D rigid2D;
 
     private void Start()
     {
         rigid2D = GetComponent<Rigidbody2D>();
+        bulletDamage = bullet.GetComponent<Bullet>().getDamage(); // 총알 데미지 가져옴
     }
 
     void Update()
     {
-        hpbar.GetComponent<Image>().fillAmount = hp / maxHP;
+        hpbar.GetComponent<Image>().fillAmount = hp / maxHP; // 체력바
         transform.Translate(Time.deltaTime * speed * Vector2.down);
         if (transform.position.y < -5) {
             Destroy(this.gameObject);
@@ -32,7 +34,7 @@ public class Enemy : MonoBehaviour
     {
         if (collision.CompareTag("bullet"))
         {
-            hp--;
+            hp -= bulletDamage; // 총알 데미지만큼 체력 감소
 
             if (hp == 0)
             {
