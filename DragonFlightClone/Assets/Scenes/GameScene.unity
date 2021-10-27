@@ -309,6 +309,8 @@ MonoBehaviour:
   speed: 7
   playerHP: 3
   gold: 0
+  magnetEffectPrefab: {fileID: 8659782690100605652, guid: 8f9cddc3258e7e94a8ceaee006d144ac, type: 3}
+  isMagnet: 0
 --- !u!50 &898030237
 Rigidbody2D:
   serializedVersion: 4
@@ -549,6 +551,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meteorLinePrefab: {fileID: 8146880204421817579, guid: 7b986ce03f349514193ebcdf6c2ebd2a, type: 3}
+  gold: 0
 --- !u!4 &1485802949
 Transform:
   m_ObjectHideFlags: 0

@@ -457,6 +457,8 @@ MonoBehaviour:
   hp: 10
   speed: 4
   hpbar: {fileID: 4222131553137161353}
+  coinPrefab: {fileID: 4690968367469408519, guid: f1bdf52d0ab908b459cd64688244cc39, type: 3}
+  MagnetPrefab: {fileID: 820537739339937398, guid: ca2a1ed37bdb1074f8f0af0c09d8474e, type: 3}
 --- !u!50 &4222131554414295139
 Rigidbody2D:
   serializedVersion: 4

@@ -42,7 +42,6 @@ public class MeteorLine : MonoBehaviour
 
     void FollowPlayer()
     {
-        
         if (trace)
         {
             float player_x = playerRigid2d.position.x;
@@ -56,7 +55,6 @@ public class MeteorLine : MonoBehaviour
                 transform.Translate(-speed * Time.deltaTime, 0, 0);
             }
         }
-        
     }
 
     //추적 & 추적 시간 종료 후 운석 생성

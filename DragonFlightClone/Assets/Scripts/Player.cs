@@ -9,17 +9,25 @@ public class Player : MonoBehaviour
     //public GameObject meteor; // 운석
     public GameObject enemy_small; // 적
     public GameObject enemy_normal; // 적
-   // public GameObject warn; // 느낌표
+    // public GameObject warn; // 느낌표
+    Rigidbody2D rigid2d;
     public float speed = 0.1f; // 이동속도
     public int playerHP = 3; // 체력
     public int gold = 0; // 돈
 
+    public GameObject magnetEffectPrefab;
+    public bool isMagnet = false;
+    bool gotMagnetBefore = false;
+
 
     void Start()
     {
+        rigid2d = GetComponent<Rigidbody2D>();
         StartCoroutine("spawnBullet"); // 총알 생성
         StartCoroutine("spawnEnemy"); // 적 생성
+        StartCoroutine(MagnetEffect());
     }
+
     IEnumerator spawnBullet() // 0.2초마다 총알 생성
     {
         while (true)
@@ -39,6 +47,21 @@ public class Player : MonoBehaviour
             Instantiate(enemy_small, new Vector2(1.5f, 6), Quaternion.identity);
             Instantiate(enemy_small, new Vector2(3, 6), Quaternion.identity);
             yield return new WaitForSeconds(5f);
+        }
+    }
+    IEnumerator Magnet()
+    {
+        yield return new WaitForSeconds(5.0f); //자석 지속시간
+
+        if (gotMagnetBefore) gotMagnetBefore = false;
+        else isMagnet = false;
+    }
+    IEnumerator MagnetEffect()
+    {
+        while (true)
+        {
+            if (isMagnet) Instantiate(magnetEffectPrefab, rigid2d.position, Quaternion.identity);
+            yield return new WaitForSeconds(0.5f);
         }
     }
 
@@ -77,6 +100,20 @@ public class Player : MonoBehaviour
         {
             playerHP--;
             if (playerHP <= 0) Destroy(gameObject);
+        }
+
+        if (collision.gameObject.name == "Coin(Clone)")
+        {
+            GameManager.gm.gold++;
+            Destroy(collision.gameObject);
+        }
+
+        if (collision.gameObject.name == "Magnet(Clone)")
+        {
+            Destroy(collision.gameObject);
+            if (isMagnet) gotMagnetBefore = true;
+            else isMagnet = true;
+            StartCoroutine(Magnet());
         }
     }
 }

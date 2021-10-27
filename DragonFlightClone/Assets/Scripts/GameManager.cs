@@ -7,9 +7,8 @@ public class GameManager : MonoBehaviour
     public static GameManager gm;
 
     public GameObject meteorLinePrefab;
-    GameObject player;
 
-    int coin = 0;
+    public int gold = 0;
 
     private void Awake()
     {
@@ -19,8 +18,6 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("player");
-
         StartCoroutine(meteorGenerator());
     }
 
@@ -36,7 +33,7 @@ public class GameManager : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(Random.Range(5, 8));
-            Instantiate(meteorLinePrefab, new Vector2(player.GetComponent<Rigidbody2D>().position.x, 0), Quaternion.identity);
+            Instantiate(meteorLinePrefab, new Vector2(GameObject.Find("player").GetComponent<Rigidbody2D>().position.x, 0), Quaternion.identity);
         }
     }
 }
