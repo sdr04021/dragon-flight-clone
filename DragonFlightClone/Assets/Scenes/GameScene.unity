@@ -304,8 +304,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 4996412372470302010, guid: dc9787b3b5ea53544a991eb7beea226d, type: 3}
-  enemy_small: {fileID: 6942728372659393458, guid: f45f83c348ab15a42883f9f000404e70, type: 3}
-  enemy_normal: {fileID: 6778968806756838279, guid: e26636583bfb6324f981a1a5615642a1, type: 3}
   speed: 7
   playerHP: 3
   gold: 0
@@ -551,6 +549,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meteorLinePrefab: {fileID: 8146880204421817579, guid: 7b986ce03f349514193ebcdf6c2ebd2a, type: 3}
+  enemy_small: {fileID: 6942728372659393458, guid: f45f83c348ab15a42883f9f000404e70, type: 3}
+  enemy_normal: {fileID: 6778968806756838279, guid: e26636583bfb6324f981a1a5615642a1, type: 3}
   gold: 0
 --- !u!4 &1485802949
 Transform:
