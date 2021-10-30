@@ -20,6 +20,8 @@ public class Enemy : MonoBehaviour
     {
         rigid2D = GetComponent<Rigidbody2D>();
         bulletDamage = bullet.GetComponent<Bullet>().getDamage(); // ÃÑ¾Ë µ¥¹ÌÁö °¡Á®¿È
+        maxHP += GameManager.gm.wave;
+        hp = maxHP;
     }
 
     void Update()

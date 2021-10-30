@@ -42,7 +42,9 @@ public class Player : MonoBehaviour
     */
     private void Start()
     {
+        rigid2d = GetComponent<Rigidbody2D>();
         StartCoroutine("TryAttack");
+        StartCoroutine(MagnetEffect());
     }
     IEnumerator Magnet()
     {
@@ -160,7 +162,6 @@ public class Player : MonoBehaviour
         }
     }
 
-<<<<<<< HEAD
     // 공격 레벨에 따른 발사체
     private void AttackByLevel()
     {
@@ -176,7 +177,6 @@ public class Player : MonoBehaviour
         }
     }
 
-=======
     public void Save()
     {
         PlayerPrefs.SetInt("gold", gold);
@@ -187,6 +187,4 @@ public class Player : MonoBehaviour
         gold = PlayerPrefs.GetInt("gold");
         goldText.text = gold.ToString();
     }
->>>>>>> c62ffaffb2344ae43280a9a704a71cd0eb05fe1a
 }
-

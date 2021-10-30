@@ -9,9 +9,13 @@ public class GameManager : MonoBehaviour
     public GameObject   meteorLinePrefab;
     public GameObject   enemy_small;        // 적
     public GameObject   enemy_normal;       // 적
-    public static int   enemy_count = 0;    // 적 등장 횟수
+    public int wave = 0;
+    public int   enemy_count = 0;    // 적 등장 횟수
     public GameObject   boss;               // 보스 오브젝트
     public GameObject   textBossWarning;    // 보스 등장 텍스트
+    //public GameObject   WarningImageL;     //
+    //public GameObject   WarningImageR;
+
 
     public int gold = 0;
 
@@ -24,7 +28,6 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        enemy_count = 0; // static 변수 초기화
         StartCoroutine(meteorGenerator());
         StartCoroutine("spawnEnemy"); // 적 생성
     }
@@ -47,9 +50,10 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator spawnEnemy()
     {
+        yield return new WaitForSeconds(3.0f);
         while (true)
         {
-            if (enemy_count < 1) // 작은 적 생성(10번만)
+            if (enemy_count < 10) // 작은 적 생성(10번만)
             {
                 Instantiate(enemy_small, new Vector2(-3, 6), Quaternion.identity);
                 Instantiate(enemy_small, new Vector2(-1.5f, 6), Quaternion.identity);
@@ -58,7 +62,7 @@ public class GameManager : MonoBehaviour
                 Instantiate(enemy_small, new Vector2(3, 6), Quaternion.identity);
                 enemy_count++;
             }
-            else if (enemy_count >= 1) // 보통 적 생성(작은 적 10번 생성 이후)
+            else if (enemy_count >= 10) // 보통 적 생성(작은 적 10번 생성 이후)
             {
                 Instantiate(enemy_normal, new Vector2(-3, 6), Quaternion.identity);
                 Instantiate(enemy_normal, new Vector2(-1.5f, 6), Quaternion.identity);
@@ -68,11 +72,12 @@ public class GameManager : MonoBehaviour
                 enemy_count++;
             }
 
-            if (enemy_count == 2) // 적 10번 생성 이후 보스 등장
+            if (enemy_count == 20) // 적 12번 생성 이후 보스 등장
             {
                 StartCoroutine("spawnBoss");
                 break;
             }
+
             yield return new WaitForSeconds(3.0f);
         }
     }
@@ -81,6 +86,11 @@ public class GameManager : MonoBehaviour
     {
         // 보스 등장 이펙트 활성화
         textBossWarning.SetActive(true);
+        /*
+        // 보스 등장 이펙트 원래 위치로
+        WarningImageL.transform.position = new Vector3(-600, -370, 0);
+        WarningImageR.transform.position = new Vector3(600, 370, 0);
+        */
         // 3초 대기
         yield return new WaitForSeconds(3.0f);
 

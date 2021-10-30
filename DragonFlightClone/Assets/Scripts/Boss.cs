@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public enum BossPattern { Appear = 0, Phase01, Phase02, }
 public class Boss : MonoBehaviour
 {
-    public float maxHP = 100;
-    public float hp = 100;
+    public float maxHP = 10;
+    public float hp = 10;
     public float speed = 2;
     public GameObject hpbar;
     public GameObject coinPrefab;
@@ -45,16 +45,24 @@ public class Boss : MonoBehaviour
                 //몹 파괴
                 Destroy(gameObject);
 
-                GameManager.enemy_count = 0; //보스 클리어 후 재진행
-                // Enemy,Boss HP 향상
-                // GameManager 스크립트에서 spawnEnemy 코루틴 호출
+                GameManager.gm.enemy_count = 0;     //보스 클리어 후 재진행
+                GameManager.gm.wave += 1;           // Enemy,Boss HP 향상
+                maxHP = maxHP * 1.1f;
+                hp = maxHP;
 
+                GameManager.gm.StartCoroutine("spawnEnemy");
             }
         }
     }
     void Update()
     {
         hpbar.GetComponent<Image>().fillAmount = hp / maxHP; // 체력바
+    }
+
+    IEnumerator WaitForNextWave()
+    {
+        yield return null; //new WaitForSeconds(3.0f);
+        GameManager.gm.StartCoroutine("spawnEnemy");
     }
 
     // 보스 패턴 변경

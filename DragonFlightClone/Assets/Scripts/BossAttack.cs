@@ -75,7 +75,7 @@ public class BossAttack : MonoBehaviour
             }
 
             // 발사체 각도 변경 7.5도 라디안으로
-            weightAngle += 0.13f; 
+            weightAngle += 0.06f; 
             // attackRate 시간만큼 대기
             yield return new WaitForSeconds(attackRate);
         }
