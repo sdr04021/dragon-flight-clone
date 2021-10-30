@@ -106,9 +106,11 @@ public class GameManager : MonoBehaviour
 
     public void GameOver() //게임 종료 캔버스를 등장시킨다
     {
+        //PlayerPrefs.SetInt("gold", gold);
         GameObject.Find("GameOverCanvas").transform.Find("GameOverImage").gameObject.SetActive(true);
         GameObject.Find("GameOverCanvas").transform.Find("GameOverButton").gameObject.SetActive(true);
         //gameOverCanvas.gameObject.SetActive(true);
         Time.timeScale = 0;
     }
+
 }
