@@ -177,7 +177,6 @@ public class Player : MonoBehaviour
         }
     }
 
-
     // 공격 레벨에 따른 발사체
     private void AttackByLevel()
     {
@@ -193,7 +192,6 @@ public class Player : MonoBehaviour
         }
     }
 
-
     public void Save()
     {
         PlayerPrefs.SetInt("gold", gold);
@@ -205,5 +203,9 @@ public class Player : MonoBehaviour
         goldText.text = gold.ToString();
     }
 
+
 }
+
+
+
 
