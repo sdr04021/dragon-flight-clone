@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     //public GameObject bullet; // 총알
     Rigidbody2D rigid2d;
     public float speed = 0.1f; // 이동속도
-    public int playerHP = 3; // 체력
+    public int playerHP = 1; // 체력
     public int gold = 0; // 돈
     public GameObject magnetEffectPrefab;
     public bool isMagnet = false;
@@ -111,17 +111,30 @@ public class Player : MonoBehaviour
         if (collision.CompareTag("enemy"))
         {
             playerHP--;
-            if (playerHP <= 0) Destroy(gameObject);
+            //if (playerHP <= 0) Destroy(gameObject);
+            if (playerHP <= 0) gameObject.SetActive(false);
             Save();
+            GameManager.gm.GameOver();
         }
         // 보스 공격에 피격
         if (collision.CompareTag("bossAttack"))
         {
             playerHP--;
-            if (playerHP <= 0) Destroy(gameObject);
+            // if (playerHP <= 0) Destroy(gameObject);
+            if (playerHP <= 0) gameObject.SetActive(false);
+            Save();
+            GameManager.gm.GameOver();
+        }
+        if (collision.gameObject.name == "Meteor(Clone)")
+        {
+            playerHP--;
+            //if (playerHP <= 0) Destroy(gameObject);
+            if (playerHP <= 0) gameObject.SetActive(false);
+            Save();
+            GameManager.gm.GameOver();
         }
 
-        if (collision.gameObject.name == "Coin(Clone)")
+            if (collision.gameObject.name == "Coin(Clone)")
         {
             gold++;
             goldText.text = gold.ToString();
@@ -141,6 +154,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.name == "Dualshot(Clone)")
         {
             Destroy(collision.gameObject);
+            // 듀얼샷 10초 지속시간 how?
             if (isDualshot) gotDualshotBefore = true;
             else isDualshot = true;
             AttackLevel++;

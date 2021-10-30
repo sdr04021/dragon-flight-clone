@@ -25,7 +25,7 @@ public class Bullet : MonoBehaviour
 
     public float getDamage()
     {
-        Debug.Log(PlayerPrefs.GetInt("level"));
+        //Debug.Log(PlayerPrefs.GetInt("level"));
         return PlayerPrefs.GetInt("level") + 1;
     }
 
