@@ -90,7 +90,7 @@ public class Player : MonoBehaviour
         {
             transform.Translate(1 * speed * Time.deltaTime, 0, 0);
         }
-
+        
         if (Input.GetKey(KeyCode.UpArrow))
         {
             transform.Translate(0, 1 * speed * Time.deltaTime, 0);
@@ -100,7 +100,7 @@ public class Player : MonoBehaviour
         {
             transform.Translate(0, -1 * speed * Time.deltaTime, 0);
         }
-
+        
         // 플레이어 이동이 범위를 벗어나지 않게
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, -2.9f, 2.9f), Mathf.Clamp(transform.position.y, -5, 5), 0);
 

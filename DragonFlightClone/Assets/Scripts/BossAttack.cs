@@ -74,8 +74,8 @@ public class BossAttack : MonoBehaviour
                 clone.GetComponent<Movement2D>().MoveTo(new Vector2(x, y));
             }
 
-            // 발사체 각도 변경 7.5도 라디안으로
-            weightAngle += 0.06f; 
+            // 발사체 각도 변경
+            weightAngle += 100 * (Mathf.PI / 180.0f);
             // attackRate 시간만큼 대기
             yield return new WaitForSeconds(attackRate);
         }

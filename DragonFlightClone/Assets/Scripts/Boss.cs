@@ -112,8 +112,22 @@ public class Boss : MonoBehaviour
         bossAttack.StartFiring(AttackType.CircleFire);
         while(true)
         {
-            // 조건
+            // 보스 체력 40% 이하일 때
+            if (hp < maxHP * 0.4f)
+            {
+                // 2번 패턴 중지
+                bossAttack.StopFiring(AttackType.CircleFire);
+                // 3번 패턴으로 변경
+                ChangeState(BossPattern.Phase03);
+            }
             yield return null;
         }
+    }
+    private IEnumerator Phase03()
+    {
+        // 1,2 번 패턴 모두
+        bossAttack.StartFiring(AttackType.SingleFire);
+        bossAttack.StartFiring(AttackType.CircleFire);
+        yield return null;
     }
 }
