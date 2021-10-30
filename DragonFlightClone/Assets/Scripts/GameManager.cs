@@ -13,9 +13,11 @@ public class GameManager : MonoBehaviour
     public int   enemy_count = 0;    // 적 등장 횟수
     public GameObject   boss;               // 보스 오브젝트
     public GameObject   textBossWarning;    // 보스 등장 텍스트
-    //public GameObject   WarningImageL;     //
-    //public GameObject   WarningImageR;
+    public GameObject   WarningImageL;     //
+    public GameObject   WarningImageR;
 
+    public Sprite pauseSprite;
+    public Sprite startSprite;
 
     public int gold = 0;
 
@@ -86,11 +88,11 @@ public class GameManager : MonoBehaviour
     {
         // 보스 등장 이펙트 활성화
         textBossWarning.SetActive(true);
-        /*
+
         // 보스 등장 이펙트 원래 위치로
-        WarningImageL.transform.position = new Vector3(-600, -370, 0);
-        WarningImageR.transform.position = new Vector3(600, 370, 0);
-        */
+        WarningImageL.transform.localPosition = new Vector3(-600, -370, 0);
+        WarningImageR.transform.localPosition = new Vector3(600, 370, 0);
+
         // 3초 대기
         yield return new WaitForSeconds(3.0f);
 

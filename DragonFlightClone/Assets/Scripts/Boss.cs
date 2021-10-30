@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum BossPattern { Appear = 0, Phase01, Phase02, }
+public enum BossPattern { Appear = 0, Phase01, Phase02, Phase03 }
 public class Boss : MonoBehaviour
 {
     public float maxHP = 10;
