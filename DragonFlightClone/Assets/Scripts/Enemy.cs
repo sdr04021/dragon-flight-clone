@@ -39,7 +39,7 @@ public class Enemy : MonoBehaviour
         {
             hp -= bulletDamage; // 총알 데미지만큼 체력 감소
 
-            if (hp == 0)
+            if (hp <= 0)
             {
                 //코인 생성
                 Instantiate(coinPrefab, rigid2D.position, Quaternion.identity);

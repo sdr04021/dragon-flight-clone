@@ -25,6 +25,8 @@ public class Lobby : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GOLD_FOR_TEST = PlayerPrefs.GetInt("gold");
+        UPGRADE_LEVEL_FOR_TEST = PlayerPrefs.GetInt("level");
         button_Start.onClick.AddListener(StartClick);
         button_Return.onClick.AddListener(ReturnClick);
         button_Upgrade.onClick.AddListener(UpgradeClick);
@@ -60,6 +62,8 @@ public class Lobby : MonoBehaviour
         tmp_UpgradeGold.SetText(price.ToString());
 
         //¿˙¿Â
+        PlayerPrefs.SetInt("gold", GOLD_FOR_TEST);
+        PlayerPrefs.SetInt("level", UPGRADE_LEVEL_FOR_TEST);
     }
     void UpgradeClick()
     {

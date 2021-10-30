@@ -141,7 +141,6 @@ public class Player : MonoBehaviour
         if (collision.gameObject.name == "Dualshot(Clone)")
         {
             Destroy(collision.gameObject);
-            // µà¾ó¼¦ 10ÃÊ Áö¼Ó½Ã°£ how?
             if (isDualshot) gotDualshotBefore = true;
             else isDualshot = true;
             AttackLevel++;
