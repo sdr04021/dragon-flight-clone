@@ -16,10 +16,12 @@ public class Player : MonoBehaviour
     public GameObject magnetEffectPrefab;
     public bool isMagnet = false;
     bool gotMagnetBefore = false;
+    public TextMeshProUGUI goldText; // 捣 UI
 
 
     void Start()
     {
+        Load();
         rigid2d = GetComponent<Rigidbody2D>();
         StartCoroutine("spawnBullet"); // 醚舅 积己
         //StartCoroutine("spawnEnemy"); // 利 积己
@@ -112,10 +114,13 @@ public class Player : MonoBehaviour
         {
             playerHP--;
             if (playerHP <= 0) Destroy(gameObject);
+            Save();
         }
 
         if (collision.gameObject.name == "Coin(Clone)")
         {
+            gold++;
+            goldText.text = gold.ToString();
             GameManager.gm.gold++;
             Destroy(collision.gameObject);
         }
@@ -128,4 +133,16 @@ public class Player : MonoBehaviour
             StartCoroutine(Magnet());
         }
     }
+
+    public void Save()
+    {
+        PlayerPrefs.SetInt("gold", gold);
+    }
+
+    public void Load()
+    {
+        gold = PlayerPrefs.GetInt("gold");
+        goldText.text = gold.ToString();
+    }
 }
+
