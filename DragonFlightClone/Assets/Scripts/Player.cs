@@ -20,14 +20,15 @@ public class Player : MonoBehaviour
     private int maxAttackLevel = 2;
     private int attackLevel = 1;
 
+    bool isDualshot = false;
+    bool gotDualshotBefore = false;
+
     /*
     void Start()
     {
         Load();
-        rigid2d = GetComponent<Rigidbody2D>();
         StartCoroutine("spawnBullet"); // 총알 생성
         //StartCoroutine("spawnEnemy"); // 적 생성
-        StartCoroutine(MagnetEffect());
     }
 
     IEnumerator spawnBullet() // 0.1초마다 총알 생성
@@ -43,6 +44,8 @@ public class Player : MonoBehaviour
     private void Start()
     {
         StartCoroutine("TryAttack");
+        rigid2d = GetComponent<Rigidbody2D>();
+        StartCoroutine(MagnetEffect());
     }
     IEnumerator Magnet()
     {
@@ -57,6 +60,17 @@ public class Player : MonoBehaviour
         {
             if (isMagnet) Instantiate(magnetEffectPrefab, rigid2d.position, Quaternion.identity);
             yield return new WaitForSeconds(0.5f);
+        }
+    }
+    IEnumerator DualShot()
+    {
+        yield return new WaitForSeconds(5.0f); //듀얼샷 지속시간
+
+        if (gotDualshotBefore) gotDualshotBefore = false;
+        else
+        {
+            isDualshot = false;
+            AttackLevel--;
         }
     }
 
@@ -124,7 +138,10 @@ public class Player : MonoBehaviour
         {
             Destroy(collision.gameObject);
             // 듀얼샷 10초 지속시간 how?
+            if (isDualshot) gotDualshotBefore = true;
+            else isDualshot = true;
             AttackLevel++;
+            StartCoroutine(DualShot());
         }
     }
 
@@ -160,7 +177,7 @@ public class Player : MonoBehaviour
         }
     }
 
-<<<<<<< HEAD
+
     // 공격 레벨에 따른 발사체
     private void AttackByLevel()
     {
@@ -176,7 +193,7 @@ public class Player : MonoBehaviour
         }
     }
 
-=======
+
     public void Save()
     {
         PlayerPrefs.SetInt("gold", gold);
@@ -187,6 +204,6 @@ public class Player : MonoBehaviour
         gold = PlayerPrefs.GetInt("gold");
         goldText.text = gold.ToString();
     }
->>>>>>> c62ffaffb2344ae43280a9a704a71cd0eb05fe1a
+
 }
 
