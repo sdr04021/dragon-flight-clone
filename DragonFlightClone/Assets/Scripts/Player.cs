@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     public GameObject magnetEffectPrefab;
     public bool isMagnet = false;
     bool gotMagnetBefore = false;
+    public TextMeshProUGUI goldText; // 돈 UI
 
     public GameObject bullet;   // 공격할 때 생성되는 발사체 프리펩
     public float attackRate = 0.1f;  // 공격 속도
@@ -22,6 +23,7 @@ public class Player : MonoBehaviour
     /*
     void Start()
     {
+        Load();
         rigid2d = GetComponent<Rigidbody2D>();
         StartCoroutine("spawnBullet"); // 총알 생성
         //StartCoroutine("spawnEnemy"); // 적 생성
@@ -93,6 +95,7 @@ public class Player : MonoBehaviour
         {
             playerHP--;
             if (playerHP <= 0) Destroy(gameObject);
+            Save();
         }
         // 보스 공격에 피격
         if (collision.CompareTag("bossAttack"))
@@ -103,6 +106,8 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.name == "Coin(Clone)")
         {
+            gold++;
+            goldText.text = gold.ToString();
             GameManager.gm.gold++;
             Destroy(collision.gameObject);
         }
@@ -155,6 +160,7 @@ public class Player : MonoBehaviour
         }
     }
 
+<<<<<<< HEAD
     // 공격 레벨에 따른 발사체
     private void AttackByLevel()
     {
@@ -170,4 +176,17 @@ public class Player : MonoBehaviour
         }
     }
 
+=======
+    public void Save()
+    {
+        PlayerPrefs.SetInt("gold", gold);
+    }
+
+    public void Load()
+    {
+        gold = PlayerPrefs.GetInt("gold");
+        goldText.text = gold.ToString();
+    }
+>>>>>>> c62ffaffb2344ae43280a9a704a71cd0eb05fe1a
 }
+

@@ -207,6 +207,9 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
+--- !u!114 &103345353
+=======
 --- !u!1 &648764950
 GameObject:
   m_ObjectHideFlags: 0
@@ -245,11 +248,21 @@ RectTransform:
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &648764952
+>>>>>>> c62ffaffb2344ae43280a9a704a71cd0eb05fe1a
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
+  m_GameObject: {fileID: 103345349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a7fc83cada394845bf936f1c76bbd93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startPauseText: {fileID: 1942617358}
+=======
   m_GameObject: {fileID: 648764950}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -423,19 +436,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &103345353
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 103345349}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a7fc83cada394845bf936f1c76bbd93, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startPauseText: {fileID: 1942617358}
+>>>>>>> c62ffaffb2344ae43280a9a704a71cd0eb05fe1a
 --- !u!1 &898030233
 GameObject:
   m_ObjectHideFlags: 0
@@ -533,15 +534,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f216f4c8ab7a4344a75fda865b592ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 4996412372470302010, guid: dc9787b3b5ea53544a991eb7beea226d, type: 3}
-  attackRate: 0.1
   speed: 7
   playerHP: 3
   gold: 0
-  magnetEffectPrefab: {fileID: 8659782690100605652, guid: 8f9cddc3258e7e94a8ceaee006d144ac,
-    type: 3}
+  magnetEffectPrefab: {fileID: 8659782690100605652, guid: 8f9cddc3258e7e94a8ceaee006d144ac, type: 3}
   isMagnet: 0
+<<<<<<< HEAD
+  bullet: {fileID: 4996412372470302010, guid: dc9787b3b5ea53544a991eb7beea226d, type: 3}
+  attackRate: 0.1
+=======
   goldText: {fileID: 648764952}
+>>>>>>> c62ffaffb2344ae43280a9a704a71cd0eb05fe1a
 --- !u!50 &898030237
 Rigidbody2D:
   serializedVersion: 4
@@ -1213,12 +1216,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d9a219cc502a94eb9df4cc5114a34a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meteorLinePrefab: {fileID: 8146880204421817579, guid: 7b986ce03f349514193ebcdf6c2ebd2a,
-    type: 3}
-  enemy_small: {fileID: 6942728372659393458, guid: f45f83c348ab15a42883f9f000404e70,
-    type: 3}
-  enemy_normal: {fileID: 6778968806756838279, guid: e26636583bfb6324f981a1a5615642a1,
-    type: 3}
+  meteorLinePrefab: {fileID: 8146880204421817579, guid: 7b986ce03f349514193ebcdf6c2ebd2a, type: 3}
+  enemy_small: {fileID: 6942728372659393458, guid: f45f83c348ab15a42883f9f000404e70, type: 3}
+  enemy_normal: {fileID: 6778968806756838279, guid: e26636583bfb6324f981a1a5615642a1, type: 3}
   boss: {fileID: 7461307041776497856, guid: 48cde171588be7749bc7b9e6ae5a351d, type: 3}
   textBossWarning: {fileID: 1109074157}
   gold: 0
