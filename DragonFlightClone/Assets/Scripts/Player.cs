@@ -5,19 +5,21 @@ using TMPro;
 
 public class Player : MonoBehaviour
 {
-    public GameObject bullet; // 총알
-    //public GameObject enemy_small; // 적
-    // public GameObject enemy_normal; // 적
+    //public GameObject bullet; // 총알
     Rigidbody2D rigid2d;
     public float speed = 0.1f; // 이동속도
     public int playerHP = 3; // 체력
     public int gold = 0; // 돈
-    //int enemy_count = 0;
     public GameObject magnetEffectPrefab;
     public bool isMagnet = false;
     bool gotMagnetBefore = false;
 
+    public GameObject bullet;   // 공격할 때 생성되는 발사체 프리펩
+    public float attackRate = 0.1f;  // 공격 속도
+    private int maxAttackLevel = 2;
+    private int attackLevel = 1;
 
+    /*
     void Start()
     {
         rigid2d = GetComponent<Rigidbody2D>();
@@ -26,41 +28,20 @@ public class Player : MonoBehaviour
         StartCoroutine(MagnetEffect());
     }
 
-    IEnumerator spawnBullet() // 0.2초마다 총알 생성
+    IEnumerator spawnBullet() // 0.1초마다 총알 생성
     {
         while (true)
         {
             Instantiate(bullet, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.1f);
         }
 
     }
-    /*
-    IEnumerator spawnEnemy()
-    {
-        while (true)
-        {
-            if(enemy_count < 3) // 작은 적 생성(10번만)
-            {
-                Instantiate(enemy_small, new Vector2(-3, 6), Quaternion.identity);
-                Instantiate(enemy_small, new Vector2(-1.5f, 6), Quaternion.identity);
-                Instantiate(enemy_small, new Vector2(0, 6), Quaternion.identity);
-                Instantiate(enemy_small, new Vector2(1.5f, 6), Quaternion.identity);
-                Instantiate(enemy_small, new Vector2(3, 6), Quaternion.identity);
-                enemy_count++;
-            }
-            else if(enemy_count >= 3) // 보통 적 생성(작은 적 10번 생성 이후)
-            {
-                Instantiate(enemy_normal, new Vector2(-3, 6), Quaternion.identity);
-                Instantiate(enemy_normal, new Vector2(-1.5f, 6), Quaternion.identity);
-                Instantiate(enemy_normal, new Vector2(0, 6), Quaternion.identity);
-                Instantiate(enemy_normal, new Vector2(1.5f, 6), Quaternion.identity);
-                Instantiate(enemy_normal, new Vector2(3, 6), Quaternion.identity);
-            }
-            yield return new WaitForSeconds(5f);
-        }
-    }
     */
+    private void Start()
+    {
+        StartCoroutine("TryAttack");
+    }
     IEnumerator Magnet()
     {
         yield return new WaitForSeconds(5.0f); //자석 지속시간
@@ -113,6 +94,12 @@ public class Player : MonoBehaviour
             playerHP--;
             if (playerHP <= 0) Destroy(gameObject);
         }
+        // 보스 공격에 피격
+        if (collision.CompareTag("bossAttack"))
+        {
+            playerHP--;
+            if (playerHP <= 0) Destroy(gameObject);
+        }
 
         if (collision.gameObject.name == "Coin(Clone)")
         {
@@ -127,5 +114,60 @@ public class Player : MonoBehaviour
             else isMagnet = true;
             StartCoroutine(Magnet());
         }
+
+        if (collision.gameObject.name == "Dualshot(Clone)")
+        {
+            Destroy(collision.gameObject);
+            // 듀얼샷 10초 지속시간 how?
+            AttackLevel++;
+        }
     }
+
+    
+
+    public int AttackLevel
+    {
+        set => attackLevel = Mathf.Clamp(value, 1, maxAttackLevel);
+        get => attackLevel;
+    }
+
+    public void StartFiring()
+    {
+        StartCoroutine("TryAttack");
+    }
+
+    /* 공격 멈춤 - 일시정지
+    public void StopFiring()
+    {
+        StopCoroutine("TryAttack");
+    }
+    */
+
+    private IEnumerator TryAttack()
+    {
+        while (true)
+        {
+            // 발사체 오브젝트 생성
+            //Instantiate(bullet, transform.position, Quaternion.identity);
+            // 공격 레벨에 따라 발사체 생성
+            AttackByLevel();
+            yield return new WaitForSeconds(attackRate);
+        }
+    }
+
+    // 공격 레벨에 따른 발사체
+    private void AttackByLevel()
+    {
+        switch (attackLevel)
+        {
+            case 1:          // Level 01 : 기존과 같이 발사체 1개 생성
+                Instantiate(bullet, transform.position, Quaternion.identity);
+                break;
+            case 2:          // Level 02 : 간격을 두고 전방으로 발사체 2개 생성
+                Instantiate(bullet, transform.position + Vector3.left * 0.2f, Quaternion.identity);
+                Instantiate(bullet, transform.position + Vector3.right * 0.2f, Quaternion.identity);
+                break;
+        }
+    }
+
 }

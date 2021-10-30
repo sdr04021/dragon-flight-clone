@@ -1,0 +1,111 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public enum BossPattern { Appear = 0, Phase01, Phase02, }
+public class Boss : MonoBehaviour
+{
+    public float maxHP = 100;
+    public float hp = 100;
+    public float speed = 2;
+    public GameObject hpbar;
+    public GameObject coinPrefab;
+    public GameObject bullet;
+    float bulletDamage;
+    Rigidbody2D rigid2D;
+
+    private float bossStop = 2.5f;
+    private BossPattern bossPattern = BossPattern.Appear;
+    private Movement2D movement2D;
+    private BossAttack bossAttack;
+
+
+    private void Awake()
+    {
+        movement2D = GetComponent<Movement2D>();
+        bossAttack = GetComponent<BossAttack>();
+    }
+    private void Start()
+    {
+        rigid2D = GetComponent<Rigidbody2D>();
+        bulletDamage = bullet.GetComponent<Bullet>().getDamage(); // 총알 데미지 가져옴
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("bullet"))
+        {
+            hp -= bulletDamage; // 총알 데미지만큼 체력 감소
+
+            if (hp == 0)
+            {
+                //코인 생성
+                Instantiate(coinPrefab, rigid2D.position, Quaternion.identity);
+                //몹 파괴
+                Destroy(gameObject);
+
+                GameManager.enemy_count = 0; //보스 클리어 후 재진행
+                // Enemy,Boss HP 향상
+                // GameManager 스크립트에서 spawnEnemy 코루틴 호출
+
+            }
+        }
+    }
+    void Update()
+    {
+        hpbar.GetComponent<Image>().fillAmount = hp / maxHP; // 체력바
+    }
+
+    // 보스 패턴 변경
+    public void ChangeState(BossPattern newState)
+    {
+        StopCoroutine(bossPattern.ToString());
+        bossPattern = newState;
+        StartCoroutine(bossPattern.ToString());
+    }
+
+    private IEnumerator Appear()
+    {
+        while (true)
+        {
+            movement2D.MoveTo(Vector3.down);
+            if (transform.position.y <= bossStop)
+            {
+                // 이동 방향 제거
+                movement2D.MoveTo(Vector3.zero);
+                // Phase01로 변경
+                ChangeState(BossPattern.Phase01);
+            }
+            yield return null;
+        }
+    }    
+
+    // 보스 공격 패턴
+    private IEnumerator Phase01()
+    {
+        bossAttack.StartFiring(AttackType.SingleFire);
+        while (true)
+        {
+            // 보스 체력 70% 이하일 때
+            if (hp < maxHP * 0.7f)
+            {
+                // 1번 패턴 중지
+                bossAttack.StopFiring(AttackType.SingleFire);
+                // 2번 패턴으로 변경
+                ChangeState(BossPattern.Phase02);
+            }
+            yield return null;
+        }
+    }
+    private IEnumerator Phase02()
+    {
+        // 원 형태 공격
+        bossAttack.StartFiring(AttackType.CircleFire);
+        while(true)
+        {
+            // 조건
+            yield return null;
+        }
+    }
+}

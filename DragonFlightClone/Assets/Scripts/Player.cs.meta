@@ -3,7 +3,9 @@ guid: 7f216f4c8ab7a4344a75fda865b592ec
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - bullet: {fileID: 4996412372470302010, guid: dc9787b3b5ea53544a991eb7beea226d, type: 3}
+  - magnetEffectPrefab: {fileID: 8659782690100605652, guid: 8f9cddc3258e7e94a8ceaee006d144ac, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

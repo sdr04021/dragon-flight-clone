@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 12e2489f3f44d66429f246dcef4292ac, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 616b21cfc23c4ef4aac611414ef88e81, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -100,10 +100,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 3
   hp: 3
-  speed: 3
+  speed: 4
   hpbar: {fileID: 6942728372854333275}
   coinPrefab: {fileID: 4690968367469408519, guid: f1bdf52d0ab908b459cd64688244cc39, type: 3}
   MagnetPrefab: {fileID: 820537739339937398, guid: ca2a1ed37bdb1074f8f0af0c09d8474e, type: 3}
+  DualshotPrefab: {fileID: 3002169888317113183, guid: 5b110f35a9fa23048955b7655353fbd9, type: 3}
   bullet: {fileID: 4996412372470302010, guid: dc9787b3b5ea53544a991eb7beea226d, type: 3}
 --- !u!50 &6942728372659393457
 Rigidbody2D:
@@ -143,7 +144,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.6, y: 0.69}
+    oldSize: {x: 1.28, y: 1.28}
     newSize: {x: 0.6, y: 0.69}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

@@ -6,21 +6,25 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager gm;
 
-    public GameObject meteorLinePrefab;
-    public GameObject enemy_small; // 적
-    public GameObject enemy_normal; // 적
-    int enemy_count = 0; // 적 등장 횟수
+    public GameObject   meteorLinePrefab;
+    public GameObject   enemy_small;        // 적
+    public GameObject   enemy_normal;       // 적
+    public static int   enemy_count = 0;    // 적 등장 횟수
+    public GameObject   boss;               // 보스 오브젝트
+    public GameObject   textBossWarning;    // 보스 등장 텍스트
 
     public int gold = 0;
 
     private void Awake()
     {
         gm = this;
+        textBossWarning.SetActive(false);
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        enemy_count = 0; // static 변수 초기화
         StartCoroutine(meteorGenerator());
         StartCoroutine("spawnEnemy"); // 적 생성
     }
@@ -41,11 +45,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    IEnumerator spawnEnemy()
+    private IEnumerator spawnEnemy()
     {
         while (true)
         {
-            if (enemy_count < 3) // 작은 적 생성(10번만)
+            if (enemy_count < 1) // 작은 적 생성(10번만)
             {
                 Instantiate(enemy_small, new Vector2(-3, 6), Quaternion.identity);
                 Instantiate(enemy_small, new Vector2(-1.5f, 6), Quaternion.identity);
@@ -54,15 +58,37 @@ public class GameManager : MonoBehaviour
                 Instantiate(enemy_small, new Vector2(3, 6), Quaternion.identity);
                 enemy_count++;
             }
-            else if (enemy_count >= 3) // 보통 적 생성(작은 적 10번 생성 이후)
+            else if (enemy_count >= 1) // 보통 적 생성(작은 적 10번 생성 이후)
             {
                 Instantiate(enemy_normal, new Vector2(-3, 6), Quaternion.identity);
                 Instantiate(enemy_normal, new Vector2(-1.5f, 6), Quaternion.identity);
                 Instantiate(enemy_normal, new Vector2(0, 6), Quaternion.identity);
                 Instantiate(enemy_normal, new Vector2(1.5f, 6), Quaternion.identity);
                 Instantiate(enemy_normal, new Vector2(3, 6), Quaternion.identity);
+                enemy_count++;
             }
-            yield return new WaitForSeconds(5f);
+
+            if (enemy_count == 2) // 적 10번 생성 이후 보스 등장
+            {
+                StartCoroutine("spawnBoss");
+                break;
+            }
+            yield return new WaitForSeconds(3.0f);
         }
+    }
+
+    private IEnumerator spawnBoss()
+    {
+        // 보스 등장 이펙트 활성화
+        textBossWarning.SetActive(true);
+        // 3초 대기
+        yield return new WaitForSeconds(3.0f);
+
+        // 보스 등장 이펙트 비활성화
+        textBossWarning.SetActive(false);
+        // 보스 출현
+        GameObject boss1 = Instantiate(boss, new Vector2(0, 9), Quaternion.identity);
+        boss1.SetActive(true);
+        boss1.GetComponent<Boss>().ChangeState(BossPattern.Appear);
     }
 }

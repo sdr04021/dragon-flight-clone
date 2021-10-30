@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     public GameObject hpbar;
     public GameObject coinPrefab;
     public GameObject MagnetPrefab;
+    public GameObject DualshotPrefab;
     public GameObject bullet;
     float bulletDamage;
     Rigidbody2D rigid2D;
@@ -43,6 +44,9 @@ public class Enemy : MonoBehaviour
 
                 //ÀÏÁ¤ È®·ü·Î ÀÚ¼® »ý¼º
                 if(Random.Range(0,10) == 1) Instantiate(MagnetPrefab, rigid2D.position, Quaternion.identity);
+
+                //ÀÏÁ¤ È®·ü·Î µà¾ó¼¦ »ý¼º
+                if (Random.Range(0, 10) == 1) Instantiate(DualshotPrefab, rigid2D.position, Quaternion.identity);
 
                 //¸÷ ÆÄ±«
                 Destroy(gameObject);

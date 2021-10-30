@@ -1,0 +1,57 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Dualshot : MonoBehaviour
+{
+    Rigidbody2D rigid2D;
+    Rigidbody2D playerRigid2D;
+    float halfWidth;
+    float jumpDirection;
+    bool isMagnet;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        rigid2D = GetComponent<Rigidbody2D>();
+        playerRigid2D = GameObject.Find("player").GetComponent<Rigidbody2D>();
+        halfWidth = GetComponent<SpriteRenderer>().bounds.size.x / 2;
+        isMagnet = GameObject.Find("player").GetComponent<Player>().isMagnet;
+
+        jumpDirection = Random.Range(0, 2);
+        if (jumpDirection == 0) jumpDirection = -1.0f;
+        rigid2D.AddForce(new Vector2(jumpDirection, 3.0f), ForceMode2D.Impulse);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (rigid2D.position.y < -7) Destroy(gameObject);
+
+        //맵밖으로못나가게설정하기
+
+    }
+    private void FixedUpdate()
+    {
+        if (isMagnet) moveToPlayer();
+    }
+
+    void moveToPlayer()
+    {
+        if (Vector3.Distance(rigid2D.position, playerRigid2D.position) < 3)
+        {
+            Vector2 toTarget = playerRigid2D.position - rigid2D.position;
+            Vector2 velocity = new Vector2(0, 0);
+            float force = 450.0f;
+
+            toTarget.Normalize();
+            toTarget *= force;
+            velocity += toTarget * Time.deltaTime;
+            rigid2D.MovePosition(rigid2D.position + (velocity * Time.deltaTime));
+
+            //방향에 맞춰 회전
+            float degree = Mathf.Atan2(playerRigid2D.position.y - rigid2D.position.y, playerRigid2D.position.x - rigid2D.position.x) * Mathf.Rad2Deg;
+            rigid2D.MoveRotation(degree + 90f);
+        }
+    }
+}

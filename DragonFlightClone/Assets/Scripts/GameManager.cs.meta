@@ -3,7 +3,12 @@ guid: e5d9a219cc502a94eb9df4cc5114a34a
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - meteorLinePrefab: {fileID: 8146880204421817579, guid: 7b986ce03f349514193ebcdf6c2ebd2a, type: 3}
+  - enemy_small: {fileID: 6942728372659393458, guid: f45f83c348ab15a42883f9f000404e70, type: 3}
+  - enemy_normal: {fileID: 6778968806756838279, guid: e26636583bfb6324f981a1a5615642a1, type: 3}
+  - boss: {fileID: 7461307041776497856, guid: 48cde171588be7749bc7b9e6ae5a351d, type: 3}
+  - textBossWarning: {fileID: 839231492684644776, guid: 203fab18343f7884692953a49a204035, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
