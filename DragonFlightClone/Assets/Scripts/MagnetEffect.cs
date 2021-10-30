@@ -19,7 +19,7 @@ public class MagnetEffect : MonoBehaviour
     {
         transform.position = playerRigid2D.position;
         transform.localScale = transform.localScale * 0.98f;
-        if ((transform.localScale.x < 0.05f) || (isMagnet == false))
+        if ((transform.localScale.x < 0.1f) || (isMagnet == false))
         {
            Destroy(gameObject);
         }

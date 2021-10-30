@@ -23,6 +23,9 @@ public class Player : MonoBehaviour
     bool isDualshot = false;
     bool gotDualshotBefore = false;
 
+    public GameObject TextMagnet;
+    public GameObject TextDualshot;
+    
     /*
     void Start()
     {
@@ -59,7 +62,7 @@ public class Player : MonoBehaviour
         while (true)
         {
             if (isMagnet) Instantiate(magnetEffectPrefab, rigid2d.position, Quaternion.identity);
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.75f);
         }
     }
     IEnumerator DualShot()
@@ -99,7 +102,7 @@ public class Player : MonoBehaviour
         }
 
         // 플레이어 이동이 범위를 벗어나지 않게
-        transform.position = new Vector3(Mathf.Clamp(transform.position.x, -4, 4), Mathf.Clamp(transform.position.y, -5, 5), 0);
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x, -2.9f, 2.9f), Mathf.Clamp(transform.position.y, -5, 5), 0);
 
     }
 
@@ -132,6 +135,7 @@ public class Player : MonoBehaviour
             if (isMagnet) gotMagnetBefore = true;
             else isMagnet = true;
             StartCoroutine(Magnet());
+            StartCoroutine(ShowText(TextMagnet));
         }
 
         if (collision.gameObject.name == "Dualshot(Clone)")
@@ -142,6 +146,7 @@ public class Player : MonoBehaviour
             else isDualshot = true;
             AttackLevel++;
             StartCoroutine(DualShot());
+            StartCoroutine(ShowText(TextDualshot));
         }
     }
 
@@ -203,7 +208,12 @@ public class Player : MonoBehaviour
         goldText.text = gold.ToString();
     }
 
-
+    IEnumerator ShowText(GameObject targetText)
+    {
+        targetText.SetActive(true);
+        yield return new WaitForSeconds(1.0f);
+        targetText.SetActive(false);
+    }
 }
 
 

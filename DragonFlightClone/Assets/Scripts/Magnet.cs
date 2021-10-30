@@ -28,13 +28,11 @@ public class Magnet : MonoBehaviour
     void Update()
     {
         if (rigid2D.position.y < -7) Destroy(gameObject);
-
-        //맵밖으로못나가게설정하기
-        
     }
     private void FixedUpdate()
     {
         if (isMagnet) moveToPlayer();
+        LeftRightBound();
     }
 
     void moveToPlayer()
@@ -53,6 +51,18 @@ public class Magnet : MonoBehaviour
             //방향에 맞춰 회전
             float degree = Mathf.Atan2(playerRigid2D.position.y - rigid2D.position.y, playerRigid2D.position.x - rigid2D.position.x) * Mathf.Rad2Deg;
             rigid2D.MoveRotation(degree + 90f);
+        }
+    }
+
+    void LeftRightBound()
+    {
+        if (rigid2D.position.x < -3.63f + halfWidth)
+        {
+            rigid2D.position = new Vector2(-3.63f + halfWidth, rigid2D.position.y);
+        }
+        else if (rigid2D.position.x > 3.63f - halfWidth)
+        {
+            rigid2D.position = new Vector2(3.63f - halfWidth, rigid2D.position.y);
         }
     }
 }
